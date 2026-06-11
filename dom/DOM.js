@@ -56,7 +56,7 @@ root.appendChild(mensaje);
 
 // pequeño juedo de adivinanza de numeros 
 
-/* const divAdivina = document.querySelector('.adivina');
+ const divAdivina = document.querySelector('.adivina');
 divAdivina.setAttribute('style', 'margin-top: 20px; display: flex; flex-direction: column; align-items: start; gap: 10px;');
 const tituloAdivina = document.createElement('h2');
 tituloAdivina.textContent = 'Adivina el numero entre 1 y 10';
@@ -99,5 +99,5 @@ butonResetNumero.addEventListener('click', () => {
 divAdivina.appendChild(butonResetNumero);
 
 const resultadoAdivina = document.createElement('p');
-divAdivina.appendChild(resultadoAdivina); */
+divAdivina.appendChild(resultadoAdivina);
 
