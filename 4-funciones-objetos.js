@@ -39,25 +39,39 @@ Los arrays ( listas ) tienen una propiedad llamada "lenght" que nos indica
 la cantidad de elementos del array. en este caso obj tiene un lenght de 3. 
 Recuerden que los indicies de un array comienzan SIEMPRE desde 0 */
 
-const lapicera_uriel = { rojo: 50, azul: 100, verde: 9 }
-const texto_uriel = { rojo: 500, azul: 0, verde: 100 }
+const lapicera_uriel = { rojo: 25, azul: 10, verde: 10, violeta: 15 }
+const texto_uriel = { rojo: 500, azul: 50, verde: 200, naranja: 60 }
+const listaTexto = []
+const texto_faltante = {}
 
 function escribirConColores(lapicera, texto) {
 
-    Object.keys(texto).map(color => {
+    for (let index = 0; index < Object.keys(texto).length; index++) {
+        listaTexto[index] = Object.keys(texto)[index].valueOf();
+
+    }
+    console.log(listaTexto)
+    for (let index = 0; index < listaTexto.length; index++) {
+        const color = listaTexto[index]
         if (lapicera[color] && lapicera[color] >= texto[color] * 0.1) {
             // (1 pablara = 0.1cc)
             lapicera[color] = lapicera[color] - (texto[color] * 0.1)
             // texto escrito -tinta parciamente gastada
-        }
-        else if (lapicera[color] && lapicera[color] < texto[color] * 0.1) {
-            texto[color] = texto[color] - lapicera[color]*10
-            lapicera[color] = 0
+            texto_faltante[color] = 0
+        } else if (lapicera[color] && lapicera[color] < texto[color] * 0.1) {
+            texto_faltante[color] = texto[color] - lapicera[color] * 10
             // texto escrito parcialmente - tinta en cero
+            console.log("te falta " + (lapicera[color] - texto[color] * 0.1) * -1 + " cc de tinta para escribir el texto " + listaTexto[index] + " dado")
+            lapicera[color] = 0
+        } else if (!lapicera[color]) {
+            console.log("te falta " + (texto[color] * 0.1) + " cc de tinta para escribir el texto " + listaTexto[index] + " dado")
         } else {
             // texto no escrito
+            texto_faltante[color] = texto[color]
         }
-    })
+    }
 }
-escribirConColores(lapicera_uriel,texto_uriel)
+
+escribirConColores(lapicera_uriel, texto_uriel)
 console.log(lapicera_uriel)
+console.log(texto_faltante)

@@ -16,6 +16,9 @@ class NuevoCuadrado {
         this.element.style.width = "250px";
         this.element.style.height = "250px";
         this.element.style.border = "1px solid black";
+        this.element.style.display = "flex";
+        this.element.style.flexDirection = "row"
+        this.element.style.justifyContent= "end"
         this.element.style.backgroundColor = this._randomRGB();
         this.name = this.element.style.backgroundColor
         this.element.appendChild(this._createButtonDelete());
@@ -34,6 +37,9 @@ class NuevoCuadrado {
     _createButtonDelete() {
         const btn = document.createElement('button');
         btn.textContent = "🗑";
+        btn.style.width = "35px"
+        btn.style.height = "35px"
+        btn.style.fontSize= "25px"
         localStorage.setItem(this.name,this.name)
         btn.addEventListener('click', () => {
             localStorage.removeItem(this.name)
@@ -55,6 +61,7 @@ const root = document.querySelector('.root');
 
 const botonCuadrados = document.createElement('button');
 botonCuadrados.textContent = "Crear nuevo cuadrado";
+botonCuadrados.style.marginBottom = "20px"
 root.appendChild(botonCuadrados);
 
 const contentCuadros = document.createElement('div');
