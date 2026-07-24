@@ -6,10 +6,14 @@ un contenedor donde se van a ir generando estos elementos de colores random
 
 BONUS: al dale click a un elemento con un color random, quiero que me muestre por consola el mensaje "soy un cuadrado, de color X" ( el formato deberà ser rgb(0/255,0/255,0/255) ) 
 BONUS BONUS: 
-cada cuadrado deberìa tener un btn de "eliminar" ( este btn tendrà como texto un tachito de basura 🧺" y al darle click, se eliminarà el cuadrado de la vista.
-la lista cuadrados de colores se deberà guardar en el localstorage, y se deberà actualizar cada vez que se genere o elimine un nuevo cuadrado de color random
+cada cuadrado deberìa tener un btn de "eliminar" ( este btn tendrà como texto un tachito de basura 🧺" y al darle click,
+se eliminarà el cuadrado de la vista. 
+la lista cuadrados de colores se deberà guardar en el localstorage,
+ y se deberà actualizar cada vez que se genere o elimine un nuevo cuadrado de color random
 */
-localStorage.clear()
+const cuadrosLocal = localStorage.getItem(cuadros);
+let cuadrados = JSON.parse(cuadrosLocal);
+
 class NuevoCuadrado {
     constructor() {
         this.element = document.createElement('div');
@@ -40,6 +44,7 @@ class NuevoCuadrado {
         btn.style.width = "35px"
         btn.style.height = "35px"
         btn.style.fontSize= "25px"
+        // arreglar estos localstorage
         localStorage.setItem(this.name,this.name)
         btn.addEventListener('click', () => {
             localStorage.removeItem(this.name)
@@ -72,6 +77,6 @@ root.appendChild(contentCuadros);
 
 botonCuadrados.addEventListener('click', () => {
     const nuevo = new NuevoCuadrado();
-    console.log('soy un cuadrado, de color ' + nuevo.name)
+    console.log('soy un cuadrado de color: ' + nuevo.name)
     nuevo.render(contentCuadros);
 });
