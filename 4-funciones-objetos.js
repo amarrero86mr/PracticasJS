@@ -41,15 +41,13 @@ Recuerden que los indicies de un array comienzan SIEMPRE desde 0 */
 
 const lapicera_uriel = { rojo: 25, azul: 10, verde: 10, violeta: 15 }
 const texto_uriel = { rojo: 500, azul: 50, verde: 200, naranja: 60 }
-const listaTexto = []
+
 const texto_faltante = {}
 
 function escribirConColores(lapicera, texto) {
 
-    for (let index = 0; index < Object.keys(texto).length; index++) {
-        listaTexto[index] = Object.keys(texto)[index].valueOf();
-
-    }
+    const listaTexto = Object.keys(texto);
+    
     console.log(listaTexto)
     for (let index = 0; index < listaTexto.length; index++) {
         const color = listaTexto[index]
