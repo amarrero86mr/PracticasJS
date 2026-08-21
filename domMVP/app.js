@@ -1,10 +1,10 @@
 // objeto jugadores de referencias como partida
-const jugadores = [
+const jugadoresReferencia = [
     {
         nombre: "Lionel Messi",
         edad: 39,
         goles: 8,
-        asistencia: 4,
+        asistencias: 4,
         regates: 39,
         tiros: 28,
         ocasiones: 109,
@@ -15,7 +15,7 @@ const jugadores = [
         nombre: "Erling Braut Haaland",
         edad: 26,
         goles: 7,
-        asistecia: 0,
+        asistencias: 0,
         regates: 4,
         tiros: 17,
         ocasiones: 43,
@@ -26,7 +26,7 @@ const jugadores = [
         nombre: "Mikel Oyarzabal",
         edad: 29,
         goles: 5,
-        asistecia: 1,
+        asistencias: 1,
         regates: 4,
         tiros: 21,
         ocasiones: 50,
@@ -34,16 +34,28 @@ const jugadores = [
         seleccion: "España",
     },
 ];
+//Objeto que usamos mientras estye la pagina abierta
+const datosTemporal = [];
 
-// cargar datos
-function primerDato(jugadores) {
-    let datoslocal = localStorage.getItem(jugadores) ? JSON.parse(localStorage.getItem(jugadores)) : null;
-    if (!datoslocal) {
-        datoslocal = JSON.stringify(jugadores)
-        localStorage.setItem("jugadores", datoslocal)
+// Cargar datos
+function primerDato() {
+    const datosGuardados = localStorage.getItem("jugadores");
+    if (datosGuardados) {
+        const jugadoresParseados = JSON.parse(datosGuardados);
+        datosTemporal.length = 0;
+        datosTemporal.push(...jugadoresParseados);
+    } else {
+        const pushDatosLocal = JSON.stringify(jugadoresReferencia);
+        localStorage.setItem("jugadores", pushDatosLocal);
+        datosTemporal.length = 0;
+        datosTemporal.push(...jugadoresReferencia);
     }
+
+    console.log(datosTemporal);
 }
-primerDato(jugadores)
+primerDato()
+
+
 const root = document.querySelector('.root');
 
 //Formulario
@@ -84,7 +96,7 @@ inputGoles.required = true;
 //Input Asistencias
 const inputAsistencias = document.createElement('input');
 inputAsistencias.type = 'number';
-inputGoles.name = 'asistencias';
+inputAsistencias.name = 'asistencias';
 inputAsistencias.placeholder = 'Asistencias';
 inputAsistencias.min = '0';
 inputAsistencias.step = '1';
@@ -133,10 +145,11 @@ inputSeleccion.name = 'seleccion';
 inputSeleccion.placeholder = 'Selección (ej: Argentina)';
 inputSeleccion.required = true;
 
+//Div agrupar botones
 const divBtnForm = document.createElement('div');
 divBtnForm.className = "divBtnForm";
 
-//Botón de envío
+//Botón Guardar
 const btnEnviar = document.createElement('button');
 btnEnviar.type = 'submit';
 btnEnviar.textContent = 'Guardar';
@@ -163,10 +176,12 @@ formDiv.appendChild(divBtnForm);
 divBtnForm.appendChild(btnEnviar);
 divBtnForm.appendChild(btnBorrar);
 
+//compraracion de datos
+
+
 //Manejo de formulario
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
-
 
     const nuevoRegistro = {
         nombre: inputNombre.value,
@@ -181,11 +196,31 @@ formulario.addEventListener('submit', (e) => {
     };
 
     console.log('Datos capturados:', nuevoRegistro);
-    alert(`Guardado: ${nuevoRegistro.nombre}, de la selección: ${nuevoRegistro.seleccion}`);
+
+    
+    const hay = jugadoresReferencia.map(jugador => {
+        const jugadorNombreTemp = jugador.nombre.toLocaleLowerCase().trim("");
+        const nuevoJugador = nuevoRegistro.nombre.toLocaleLowerCase().trim("")
+        if (jugadorNombreTemp === nuevoJugador) {
+            return true
+        } else { return false}
+
+    })
+    alert( hay 
+        ? `Modificando: ${nuevoRegistro.nombre} ` 
+        : `Guardando: ${nuevoRegistro.nombre}, de la selección: ${nuevoRegistro.seleccion}`);
 
     // Opcional: limpiar el formulario después de enviar
     formulario.reset();
 });
+
+// propuesta de que mostrar (futuro dropbox)
+const futuroDropbox = "goleador"
+
+// espacio de muestra el dropbox
+const mejorElejido = document.createElement('div')
+const listaJugadores = document.createElement('list')
+
 
 // 8. Insertar el formulario en el DOM
 root.appendChild(formulario);
