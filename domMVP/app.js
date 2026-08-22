@@ -176,9 +176,6 @@ formDiv.appendChild(divBtnForm);
 divBtnForm.appendChild(btnEnviar);
 divBtnForm.appendChild(btnBorrar);
 
-//compraracion de datos
-
-
 //Manejo de formulario
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -196,21 +193,27 @@ formulario.addEventListener('submit', (e) => {
     };
 
     console.log('Datos capturados:', nuevoRegistro);
-
-    
-    const hay = jugadoresReferencia.map(jugador => {
+    let position = 0
+    //buscamos si eljugador existe para mensaje de alerta
+    const hay = jugadoresReferencia.some(jugador => {
         const jugadorNombreTemp = jugador.nombre.toLocaleLowerCase().trim("");
         const nuevoJugador = nuevoRegistro.nombre.toLocaleLowerCase().trim("")
+        position++;
         if (jugadorNombreTemp === nuevoJugador) {
             return true
-        } else { return false}
-
+        }
     })
-    alert( hay 
-        ? `Modificando: ${nuevoRegistro.nombre} ` 
+
+    alert(hay
+        ? `Modificando: ${nuevoRegistro.nombre} `
         : `Guardando: ${nuevoRegistro.nombre}, de la selección: ${nuevoRegistro.seleccion}`);
 
-    // Opcional: limpiar el formulario después de enviar
+    if (hay) { 
+        jugadoresReferencia.splice(position-1,1,nuevoRegistro)
+    }
+    console.log(jugadoresReferencia)
+    // falta guaradar en localstore
+    
     formulario.reset();
 });
 
