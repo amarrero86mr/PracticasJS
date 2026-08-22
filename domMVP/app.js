@@ -44,14 +44,7 @@ function primerDato() {
         const jugadoresParseados = JSON.parse(datosGuardados);
         datosTemporal.length = 0;
         datosTemporal.push(...jugadoresParseados);
-    } else {
-        const pushDatosLocal = JSON.stringify(jugadoresReferencia);
-        localStorage.setItem("jugadores", pushDatosLocal);
-        datosTemporal.length = 0;
-        datosTemporal.push(...jugadoresReferencia);
     }
-
-    console.log(datosTemporal);
 }
 primerDato()
 
@@ -195,7 +188,7 @@ formulario.addEventListener('submit', (e) => {
     console.log('Datos capturados:', nuevoRegistro);
     let position = 0
     //buscamos si eljugador existe para mensaje de alerta
-    const hay = jugadoresReferencia.some(jugador => {
+    const hay = datosTemporal.some(jugador => {
         const jugadorNombreTemp = jugador.nombre.toLocaleLowerCase().trim("");
         const nuevoJugador = nuevoRegistro.nombre.toLocaleLowerCase().trim("")
         position++;
@@ -209,10 +202,15 @@ formulario.addEventListener('submit', (e) => {
         : `Guardando: ${nuevoRegistro.nombre}, de la selección: ${nuevoRegistro.seleccion}`);
 
     if (hay) { 
-        jugadoresReferencia.splice(position-1,1,nuevoRegistro)
+        datosTemporal.splice(position-1,1,nuevoRegistro)
+    } else {
+        datosTemporal.push(nuevoRegistro)
     }
-    console.log(jugadoresReferencia)
-    // falta guaradar en localstore
+
+    console.log(datosTemporal)
+    localStorage.setItem('jugadores', JSON.stringify(datosTemporal))
+
+    
     
     formulario.reset();
 });
