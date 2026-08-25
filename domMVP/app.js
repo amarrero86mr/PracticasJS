@@ -174,7 +174,7 @@ formulario.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const nuevoRegistro = {
-        nombre: inputNombre.value,
+        nombre: inputNombre.value.trim(),
         edad: parseInt(inputEdad.value, 10),
         goles: parseInt(inputGoles.value, 10),
         asistencia: parseInt(inputAsistencias.value, 10),
@@ -182,46 +182,49 @@ formulario.addEventListener('submit', (e) => {
         tiros: parseInt(inputTiros.value, 10),
         ocasiones: parseInt(inputOcasiones.value, 10),
         atajadas: parseInt(inputAtajadas.value, 10),
-        seleccion: inputSeleccion.value
+        seleccion: inputSeleccion.value.trim()
     };
 
-    console.log('Datos capturados:', nuevoRegistro);
-    let position = 0
-    //buscamos si eljugador existe para mensaje de alerta
-    const hay = datosTemporal.some(jugador => {
-        const jugadorNombreTemp = jugador.nombre.toLocaleLowerCase().trim("");
-        const nuevoJugador = nuevoRegistro.nombre.toLocaleLowerCase().trim("")
-        position++;
-        if (jugadorNombreTemp === nuevoJugador) {
-            return true
-        }
-    })
+    //Buscamos la posición del jugador en el array
+    const nombreLimpio = nuevoRegistro.nombre.toLowerCase();
 
-    alert(hay
-        ? `Modificando: ${nuevoRegistro.nombre} `
-        : `Guardando: ${nuevoRegistro.nombre}, de la selección: ${nuevoRegistro.seleccion}`);
+    const posicion = datosTemporal.findIndex(jugador => 
+        jugador.nombre.toLowerCase().trim() === nombreLimpio
+    );
 
-    if (hay) { 
-        datosTemporal.splice(position-1,1,nuevoRegistro)
+    //evaluamos si el jugador ya existe o es nuevo
+    if (posicion !== -1) {
+        datosTemporal[posicion] = nuevoRegistro;
+        alert(`Jugador actualizado: ${nuevoRegistro.nombre}`);
     } else {
-        datosTemporal.push(nuevoRegistro)
+        datosTemporal.push(nuevoRegistro);
+        alert(`Guardando nuevo jugador: ${nuevoRegistro.nombre} (${nuevoRegistro.seleccion})`);
     }
 
-    console.log(datosTemporal)
-    localStorage.setItem('jugadores', JSON.stringify(datosTemporal))
+    localStorage.setItem('jugadores', JSON.stringify(datosTemporal));
+    console.log('Lista actualizada:', datosTemporal);
 
-    
-    
     formulario.reset();
 });
 
 // propuesta de que mostrar (futuro dropbox)
-const futuroDropbox = "goleador"
+const eleccionDropbox = "goles"
 
 // espacio de muestra el dropbox
-const mejorElejido = document.createElement('div')
-const listaJugadores = document.createElement('list')
+const divMejorElejido = document.createElement('div');
+const listaJugadores = document.createElement('ul');
+
+// generamos la lista ordenada por el mejor segun elejimos
+const datosMejorElejido = datosTemporal.toSorted((a, b) => b[eleccionDropbox] - a[eleccionDropbox]);
+datosMejorElejido.forEach(item => {
+    const itemMejor = document.createElement("li");
+    itemMejor.textContent = `${item[eleccionDropbox]} ${eleccionDropbox} - ${item.nombre}`;
+    listaJugadores.appendChild(itemMejor);
+});
+
+divMejorElejido.appendChild(listaJugadores);
 
 
-// 8. Insertar el formulario en el DOM
+//Insertar el formulario en el DOM
 root.appendChild(formulario);
+root.appendChild(divMejorElejido);
