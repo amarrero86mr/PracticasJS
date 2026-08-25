@@ -1,3 +1,4 @@
+import getBandera from "./paises.js";
 // objeto jugadores de referencias como partida
 const jugadoresReferencia = [
     {
@@ -212,13 +213,16 @@ const eleccionDropbox = "goles"
 
 // espacio de muestra el dropbox
 const divMejorElejido = document.createElement('div');
+
 const listaJugadores = document.createElement('ul');
 
 // generamos la lista ordenada por el mejor segun elejimos
 const datosMejorElejido = datosTemporal.toSorted((a, b) => b[eleccionDropbox] - a[eleccionDropbox]);
 datosMejorElejido.forEach(item => {
+    const bandera = getBandera(item.seleccion)
     const itemMejor = document.createElement("li");
-    itemMejor.textContent = `${item[eleccionDropbox]} ${eleccionDropbox} - ${item.nombre}`;
+    // itemMejor.textContent = `${item[eleccionDropbox]} ${eleccionDropbox} - ${item.nombre} - ${bandera}`;
+    itemMejor.innerHTML = `${item[eleccionDropbox]} ${eleccionDropbox} - ${item.nombre} - <span class="bandera-emoji">${bandera}</span>`;
     listaJugadores.appendChild(itemMejor);
 });
 
