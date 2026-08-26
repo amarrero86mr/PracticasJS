@@ -1,40 +1,5 @@
 import getBandera from "./paises.js";
-// objeto jugadores de referencias como partida
-const jugadoresReferencia = [
-    {
-        nombre: "Lionel Messi",
-        edad: 39,
-        goles: 8,
-        asistencias: 4,
-        regates: 39,
-        tiros: 28,
-        ocasiones: 109,
-        atajadas: 0,
-        seleccion: "Argentina",
-    },
-    {
-        nombre: "Erling Braut Haaland",
-        edad: 26,
-        goles: 7,
-        asistencias: 0,
-        regates: 4,
-        tiros: 17,
-        ocasiones: 43,
-        atajadas: 0,
-        seleccion: "Noruega",
-    },
-    {
-        nombre: "Mikel Oyarzabal",
-        edad: 29,
-        goles: 5,
-        asistencias: 1,
-        regates: 4,
-        tiros: 21,
-        ocasiones: 50,
-        atajadas: 0,
-        seleccion: "España",
-    },
-];
+
 //Objeto que usamos mientras estye la pagina abierta
 const datosTemporal = [];
 
@@ -248,7 +213,7 @@ function listaJugadoresFunction(categoria) {
     const datosMejorElejido = datosTemporal.toSorted((a, b) => b[categoria] - a[categoria]);
 
     //creamos los items de la lista
-    datosMejorElejido.forEach(item => {
+    datosMejorElejido.slice(0,10).forEach(item => {
         const bandera = getBandera(item.seleccion);
         const itemMejor = document.createElement("li");
         itemMejor.innerHTML = `${item[categoria]} ${categoria} - ${item.nombre} - <span class="bandera-emoji">${bandera}</span>`;
@@ -266,7 +231,39 @@ selectMejor.addEventListener('change', (e) => {
 // llamamos a la funcion para listar mejor jugador preterminadamente en goleador
 listaJugadoresFunction('goles');
 
+function selecciones(datos) {
+    //Agrupamos los jugadores por el nombre de su selección
+    // groupBy me salvo las papas de usar dos ciclos
+    const jugadoresPorPais = Object.groupBy(datos, jugador => jugador.seleccion);
+
+    const contenedorGlobal = document.createElement('div');
+    contenedorGlobal.className = 'contenedor-selecciones';
+
+    Object.entries(jugadoresPorPais).forEach(([nombrePais, listaJugadores]) => {
+        const divPais = document.createElement('div');
+        divPais.className = 'card-pais';
+
+        const bandera = getBandera(nombrePais);
+        
+        const titulo = document.createElement('h3');
+        titulo.innerHTML = `<span class="bandera-emoji">${bandera}</span> ${nombrePais}`;
+        divPais.appendChild(titulo);
+
+        const ul = document.createElement('ul');
+        listaJugadores.forEach(jugador => {
+            const li = document.createElement('li');
+            li.textContent = `${jugador.nombre} - ${jugador.goles} goles`;
+            ul.appendChild(li);
+        });
+
+        divPais.appendChild(ul);
+        contenedorGlobal.appendChild(divPais);
+    });
+
+    return contenedorGlobal;
+}
 
 //Insertamos los elementos en el DOM
 root.appendChild(formulario);
 root.appendChild(divMejorElejido);
+root.appendChild(selecciones(datosTemporal))
