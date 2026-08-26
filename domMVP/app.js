@@ -178,7 +178,7 @@ formulario.addEventListener('submit', (e) => {
         nombre: inputNombre.value.trim(),
         edad: parseInt(inputEdad.value, 10),
         goles: parseInt(inputGoles.value, 10),
-        asistencia: parseInt(inputAsistencias.value, 10),
+        asistencias: parseInt(inputAsistencias.value, 10),
         regates: parseInt(inputRegates.value, 10),
         tiros: parseInt(inputTiros.value, 10),
         ocasiones: parseInt(inputOcasiones.value, 10),
@@ -208,27 +208,65 @@ formulario.addEventListener('submit', (e) => {
     formulario.reset();
 });
 
-// propuesta de que mostrar (futuro dropbox)
-const eleccionDropbox = "goles"
 
-// espacio de muestra el dropbox
+// div select options para mejor jugador
 const divMejorElejido = document.createElement('div');
+const divSelectMejor = document.createElement('div');
+const tituloSelect = document.createElement('h3');
+tituloSelect.textContent = "Selecciona Categoría";
+divSelectMejor.appendChild(tituloSelect);
+
+const selectMejor = document.createElement('select');
+
+//Opciones del select
+const mGoleador = document.createElement('option');
+mGoleador.value = "goles";
+mGoleador.textContent = "Mejor Goleador";
+selectMejor.appendChild(mGoleador);
+
+const mArquero = document.createElement('option');
+mArquero.value = "atajadas";
+mArquero.textContent = "Mejor Arquero";
+selectMejor.appendChild(mArquero);
+
+const mAsistencias = document.createElement('option');
+mAsistencias.value = "asistencias";
+mAsistencias.textContent = "Más Asistencias";
+selectMejor.appendChild(mAsistencias);
+
+divSelectMejor.appendChild(selectMejor);
+divMejorElejido.appendChild(divSelectMejor);
 
 const listaJugadores = document.createElement('ul');
-
-// generamos la lista ordenada por el mejor segun elejimos
-const datosMejorElejido = datosTemporal.toSorted((a, b) => b[eleccionDropbox] - a[eleccionDropbox]);
-datosMejorElejido.forEach(item => {
-    const bandera = getBandera(item.seleccion)
-    const itemMejor = document.createElement("li");
-    // itemMejor.textContent = `${item[eleccionDropbox]} ${eleccionDropbox} - ${item.nombre} - ${bandera}`;
-    itemMejor.innerHTML = `${item[eleccionDropbox]} ${eleccionDropbox} - ${item.nombre} - <span class="bandera-emoji">${bandera}</span>`;
-    listaJugadores.appendChild(itemMejor);
-});
-
 divMejorElejido.appendChild(listaJugadores);
 
+// Función para renderizar la lista ordenada
+function listaJugadoresFunction(categoria) {
+    //borramos cada lista para generar lña nueva
+    listaJugadores.innerHTML = '';
+    
+    const datosMejorElejido = datosTemporal.toSorted((a, b) => b[categoria] - a[categoria]);
 
-//Insertar el formulario en el DOM
+    //creamos los items de la lista
+    datosMejorElejido.forEach(item => {
+        const bandera = getBandera(item.seleccion);
+        const itemMejor = document.createElement("li");
+        itemMejor.innerHTML = `${item[categoria]} ${categoria} - ${item.nombre} - <span class="bandera-emoji">${bandera}</span>`;
+        listaJugadores.appendChild(itemMejor);
+    });
+}
+
+// Evento que se dispara al cambiarl la opción del dropbox
+selectMejor.addEventListener('change', (e) => {
+    const categoriaSeleccionada = e.target.value;
+    console.log(categoriaSeleccionada);
+    listaJugadoresFunction(categoriaSeleccionada);
+});
+
+// llamamos a la funcion para listar mejor jugador preterminadamente en goleador
+listaJugadoresFunction('goles');
+
+
+//Insertamos los elementos en el DOM
 root.appendChild(formulario);
 root.appendChild(divMejorElejido);
