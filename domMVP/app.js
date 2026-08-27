@@ -176,8 +176,9 @@ formulario.addEventListener('submit', (e) => {
 
 // div select options para mejor jugador
 const divMejorElejido = document.createElement('div');
+divMejorElejido.className = "divMejorElejido"
 const divSelectMejor = document.createElement('div');
-const tituloSelect = document.createElement('h3');
+const tituloSelect = document.createElement('h2');
 tituloSelect.textContent = "Selecciona Categoría";
 divSelectMejor.appendChild(tituloSelect);
 
@@ -203,6 +204,7 @@ divSelectMejor.appendChild(selectMejor);
 divMejorElejido.appendChild(divSelectMejor);
 
 const listaJugadores = document.createElement('ul');
+listaJugadores.className = "ulListaJugadores";
 divMejorElejido.appendChild(listaJugadores);
 
 // Función para renderizar la lista ordenada
@@ -237,11 +239,11 @@ function selecciones(datos) {
     const jugadoresPorPais = Object.groupBy(datos, jugador => jugador.seleccion);
 
     const contenedorGlobal = document.createElement('div');
-    contenedorGlobal.className = 'contenedor-selecciones';
+    contenedorGlobal.className = 'contenedorSelecciones';
 
     Object.entries(jugadoresPorPais).forEach(([nombrePais, listaJugadores]) => {
         const divPais = document.createElement('div');
-        divPais.className = 'card-pais';
+        divPais.className = 'divPais';
 
         const bandera = getBandera(nombrePais);
         
@@ -249,14 +251,15 @@ function selecciones(datos) {
         titulo.innerHTML = `<span class="bandera-emoji">${bandera}</span> ${nombrePais}`;
         divPais.appendChild(titulo);
 
-        const ul = document.createElement('ul');
+        const ulSeleccion = document.createElement('ul');
+        ulSeleccion.className = "ulSeleccion"
         listaJugadores.forEach(jugador => {
             const li = document.createElement('li');
-            li.textContent = `${jugador.nombre} - ${jugador.goles} goles`;
-            ul.appendChild(li);
+            li.textContent = `${jugador.nombre} - ${jugador.edad} años`;
+            ulSeleccion.appendChild(li);
         });
 
-        divPais.appendChild(ul);
+        divPais.appendChild(ulSeleccion);
         contenedorGlobal.appendChild(divPais);
     });
 
