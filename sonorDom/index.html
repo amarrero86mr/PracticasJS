@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Efecto Robot - Manipulación de Buffer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+    button {
+      padding: 12px 24px;
+      margin: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #007acc;
+      color: white;
+    }
+    button:disabled {
+      background-color: #555;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Modificador de Voz (Efecto Robot)</h1>
+  
+  <div>
+    <button id="btnGrabar">🎤 Grabar</button>
+    <button id="btnDetener" disabled>⏹️ Detener</button>
+  </div>
+
+  <hr style="margin: 20px 0; border-color: #444;">
+
+  <div>
+    <button id="btnReproducir" disabled>🤖 Reproducir Efecto Robot</button>
+  </div>
+
+  <!-- Vinculamos primero la matemática de efectos -->
+  <script src="./aplicarEfectoRobot.js" type="module" defer></script>
+  <script src="./dafta.js" type="module" defer></script>
+
+  <!-- Vinculamos la interfaz y lógica de la aplicación -->
+  <script src="./app.js" type="module" defer></script>
+</body>
+</html>
