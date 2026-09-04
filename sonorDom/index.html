@@ -1,52 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Efecto Robot - Manipulación de Buffer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 30px;
-      background-color: #1e1e1e;
-      color: #fff;
-    }
-    button {
-      padding: 12px 24px;
-      margin: 8px;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      background-color: #007acc;
-      color: white;
-    }
-    button:disabled {
-      background-color: #555;
-      cursor: not-allowed;
-    }
-  </style>
-</head>
-<body>
 
-  <h1>Modificador de Voz (Efecto Robot)</h1>
-  
-  <div>
-    <button id="btnGrabar">🎤 Grabar</button>
-    <button id="btnDetener" disabled>⏹️ Detener</button>
-  </div>
+  <head>
+    <meta charset="UTF-8">
+    <title>Efecto Robot - Manipulación de Buffer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 30px;
+        background-color: #1e1e1e;
+        color: #fff;
+      }
 
-  <hr style="margin: 20px 0; border-color: #444;">
+      button {
+        padding: 12px 24px;
+        margin: 8px;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background-color: #007acc;
+        color: white;
+      }
 
-  <div>
-    <button id="btnReproducir" disabled>🤖 Reproducir Efecto Robot</button>
-  </div>
+      button:disabled {
+        background-color: #555;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
 
-  <!-- Vinculamos primero la matemática de efectos -->
-  <script src="./aplicarEfectoRobot.js" type="module" defer></script>
-  <script src="./dafta.js" type="module" defer></script>
+  <body>
+    <section>
 
-  <!-- Vinculamos la interfaz y lógica de la aplicación -->
-  <script src="./app.js" type="module" defer></script>
-</body>
+      <h1>Modificador de Voz (Efecto Robot)</h1>
+
+      <div>
+        <button id="btnGrabar">🎤 Grabar</button>
+        <button id="btnDetener" disabled>⏹️ Detener</button>
+      </div>
+
+      <div>
+        <button id="btnReproducir" disabled>🤖 Reproducir Efecto Robot</button>
+      </div>
+    </section>
+
+    <hr style="margin: 20px 0; border-color: #444;">
+
+    <section>
+      <h2>Escribe la voz</h2>
+
+      <form action="" id="formTextVoz">
+
+        <label for="texto">Texto:</label>
+        <input type="text" id="inpTexVoz" name="texto" style="margin: 20px 0; width: 20rem; height: 2rem;"><br>
+
+        <button type="submit" id="btnTexVoz">Reproducir tu TexVoz-e</button>
+
+      </form>
+    </section>
+
+
+
+   
+    <!-- Vinculamos primero la matemática de efectos -->
+    <script src="./aplicarEfectoRobot.js" type="module" defer></script>
+    <script src="./dafta.js" type="module" defer></script>
+
+    <!-- Vinculamos la interfaz y lógica de la aplicación -->
+    <script src="./app.js" type="module" defer></script>
+  </body>
+
 </html>

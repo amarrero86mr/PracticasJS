@@ -48,10 +48,10 @@ btnReproducir.onclick = async () => {
 
     // Llama a la función global disponible gracias a audio-effects.js
     //   const outputSamples = aplicarEfectoRobot(inputSamples, sampleRate, 250);
-   
+
     // alternativa dafta aplicarCadenaDaftPunk()
     const outputSamples = aplicarCadenaDaftPunk(inputSamples, sampleRate)
-   
+
     // Crear AudioBuffer para reproducción
     const processedBuffer = audioCtx.createBuffer(1, outputSamples.length, sampleRate);
     processedBuffer.copyToChannel(outputSamples, 0);
@@ -61,3 +61,32 @@ btnReproducir.onclick = async () => {
     source.connect(audioCtx.destination);
     source.start();
 };
+
+const formTextVoz = document.getElementById('formTextVoz');
+const inpTexVoz = document.getElementById('inpTexVoz');
+inpTexVoz.type = 'text';
+const btnTexVoz = document.getElementById('btnTexVoz');
+
+formTextVoz.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const data = new FormData(e.target)
+    let texVoz = data.get("texto");
+
+    if (texVoz.trim() === "") {
+        texVoz = "ser humano arrogante! escrive algo"
+    }
+    //console.log(texVoz);
+
+    // 1. Crear el mensaje
+    const mensaje = new SpeechSynthesisUtterance(texVoz);
+
+    // 2. Ajustar parámetros
+    mensaje.voice = speechSynthesis[3]; // Lista de 4 tipos de voces, depende del SO
+    mensaje.lang = "es-MX"; // Idioma (ej: "es-AR", "es-ES", "en-US")
+    mensaje.pitch = 1.2;    // Tono (0 a 2)
+    mensaje.rate = 0.9;     // Velocidad (0.1 a 10)
+
+    // 3. Reproducir por los parlantes segun SO
+    //window.speechSynthesis.speak(mensaje);
+    const nuevaVoz = speechSynthesis.speak(mensaje);
+});
