@@ -9,13 +9,27 @@
 const tareasProyecto = [
     { titulo: "Diseñar Base de Datos", estado: " PENDIENTE " },
     { titulo: "Crear API en Express", estado: "en progreso" },
-    { titulo: "Configurar Servidor", estado: "PENDIENTE" }
+    { titulo: "Configurar Servidor", estado: "PENDIENTE" },
+    { titulo: "diseñar views client", estado: "finalizado" }
 ];
 
 function agruparTareasPorEstado(listaTareas) {
-    const listEstados = Object.groupBy(listaTareas, (tarea) => tarea.estado.trim().toLowerCase());
+    const listaEstados = {};
+    
+    listaTareas.forEach(tarea => {
+        const est = tarea.estado.trim().toLowerCase();
+        
+        // Corregido: verificamos en el acumulador (listaEstados)
+        if (!listaEstados[est]) {
+            listaEstados[est] = [];
+        }
+        //en vez de if
+        // listaEstados[est] = listaEstados[est] || []
+        
+        listaEstados[est].push(tarea.titulo);
+    });
 
-    return listEstados
+    return listaEstados;
 }
 
 const agrupados = agruparTareasPorEstado(tareasProyecto)
