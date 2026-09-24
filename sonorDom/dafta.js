@@ -67,7 +67,7 @@ function aplicarCadenaDaftPunk(inputSamples, sampleRate) {
   let paso4 = aplicarBoostAgudos(paso3, sampleRate);
 
   // 5. Phaser Sutil (Movimiento metálico)
-  let resultadoFinal = aplicarPhaser(paso4, sampleRate);
+  let resultadoFinal = aplicarPhaser(paso3, sampleRate);
 
   return resultadoFinal;
 }

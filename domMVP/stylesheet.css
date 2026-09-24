@@ -133,6 +133,7 @@ select option {
 .ulListaJugadores>li{
   font-size: 3vh;
   padding: 0 0 0 2vw;
+  color: rgb(225, 225, 225);
 }
 
 .contenedorSelecciones{

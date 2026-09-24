@@ -154,7 +154,7 @@ formulario.addEventListener('submit', (e) => {
     //Buscamos la posición del jugador en el array
     const nombreLimpio = nuevoRegistro.nombre.toLowerCase();
 
-    const posicion = datosTemporal.findIndex(jugador => 
+    const posicion = datosTemporal.findIndex(jugador =>
         jugador.nombre.toLowerCase().trim() === nombreLimpio
     );
 
@@ -171,6 +171,8 @@ formulario.addEventListener('submit', (e) => {
     console.log('Lista actualizada:', datosTemporal);
 
     formulario.reset();
+    actualiza();
+    
 });
 
 
@@ -199,6 +201,21 @@ const mAsistencias = document.createElement('option');
 mAsistencias.value = "asistencias";
 mAsistencias.textContent = "Más Asistencias";
 selectMejor.appendChild(mAsistencias);
+// maximo creador
+const mCreador = document.createElement('option');
+mCreador.value = "ocasiones";
+mCreador.textContent = "Máximo Creador";
+selectMejor.appendChild(mCreador);
+// mejor sub 23
+const mSub = document.createElement('option');
+mSub.value = "edad";
+mSub.textContent = "Máximo Sub 23";
+selectMejor.appendChild(mSub);
+// maximo MVP
+const mMvp = document.createElement('option');
+mMvp.value = "mvp";
+mMvp.textContent = "Máximo MVP";
+selectMejor.appendChild(mMvp);
 
 divSelectMejor.appendChild(selectMejor);
 divMejorElejido.appendChild(divSelectMejor);
@@ -208,14 +225,16 @@ listaJugadores.className = "ulListaJugadores";
 divMejorElejido.appendChild(listaJugadores);
 
 // Función para renderizar la lista ordenada
-function listaJugadoresFunction(categoria) {
+function listaJugadoresFunction(categoria, datos) {
     //borramos cada lista para generar lña nueva
     listaJugadores.innerHTML = '';
-    
-    const datosMejorElejido = datosTemporal.toSorted((a, b) => b[categoria] - a[categoria]);
+
+    const datosMejorElejidoordenado = datos.toSorted((a, b) => b[categoria] - a[categoria]);
+    const datosMejorElejido = datosMejorElejidoordenado
+    // filter(jugador => jugador[categoria] > 0 || jugador);
 
     //creamos los items de la lista
-    datosMejorElejido.slice(0,10).forEach(item => {
+    datosMejorElejido.slice(0, 10).forEach(item => {
         const bandera = getBandera(item.seleccion);
         const itemMejor = document.createElement("li");
         itemMejor.innerHTML = `${item[categoria]} ${categoria} - ${item.nombre} - <span class="bandera-emoji">${bandera}</span>`;
@@ -223,22 +242,45 @@ function listaJugadoresFunction(categoria) {
     });
 }
 
+// funciones especiales para mejor elejido 
+function subVeinte() { return datosTemporal.filter(jugador => jugador.edad <= 23) }
+function mejorMvp() {
+    const datosMvp = datosTemporal.map(jugador => {
+        jugador['mvp'] = Math.round((
+            jugador["goles"] * 5 +
+            jugador["asistencias"] * 4 +
+            jugador["regates"] * 0.5 +
+            jugador["tiros"] * 0.3 +
+            jugador["ocasiones"] * 0.2 +
+            jugador["atajadas"] * 3
+        )*100) / 100;
+        return jugador;
+    })
+    return datosMvp
+}
+
 // Evento que se dispara al cambiarl la opción del dropbox
 selectMejor.addEventListener('change', (e) => {
     const categoriaSeleccionada = e.target.value;
     console.log(categoriaSeleccionada);
-    listaJugadoresFunction(categoriaSeleccionada);
+    if (categoriaSeleccionada == "edad") {
+        listaJugadoresFunction(categoriaSeleccionada, subVeinte());
+    } else if (categoriaSeleccionada == "mvp") {
+        listaJugadoresFunction(categoriaSeleccionada, mejorMvp());
+    } else {
+        listaJugadoresFunction(categoriaSeleccionada, datosTemporal);
+    }
 });
 
 // llamamos a la funcion para listar mejor jugador preterminadamente en goleador
-listaJugadoresFunction('goles');
+listaJugadoresFunction('goles', datosTemporal);
 
+const contenedorGlobal = document.createElement('div');
 function selecciones(datos) {
     //Agrupamos los jugadores por el nombre de su selección
     // groupBy me salvo las papas de usar dos ciclos
     const jugadoresPorPais = Object.groupBy(datos, jugador => jugador.seleccion);
 
-    const contenedorGlobal = document.createElement('div');
     contenedorGlobal.className = 'contenedorSelecciones';
 
     Object.entries(jugadoresPorPais).forEach(([nombrePais, listaJugadores]) => {
@@ -246,7 +288,7 @@ function selecciones(datos) {
         divPais.className = 'divPais';
 
         const bandera = getBandera(nombrePais);
-        
+
         const titulo = document.createElement('h3');
         titulo.innerHTML = `<span class="bandera-emoji">${bandera}</span> ${nombrePais}`;
         divPais.appendChild(titulo);
@@ -270,3 +312,8 @@ function selecciones(datos) {
 root.appendChild(formulario);
 root.appendChild(divMejorElejido);
 root.appendChild(selecciones(datosTemporal))
+// actualiza la listas de selecciones
+function actualiza() {
+    contenedorGlobal.innerHTML = '';
+    root.appendChild(selecciones(datosTemporal));
+}
