@@ -21,11 +21,11 @@ function listadoIndividualFor(lis) {
         for (let x = 0; x < par.length; x++) {
             if (par[x] != " ") {
                 palabra = palabra.concat(par[x]);
-            } else if (par[x] === " " || x === par.length-1){
+            }
+            if (par[x] === " " || x === par.length - 1) {
                 hashindividuales.push(palabra);
                 palabra = "";
             }
-            console.log(palabra)
         };
     });
     return hashindividuales
@@ -41,3 +41,13 @@ Qué debe hacer la función: Devolver un único array plano con todas las habili
 
 Argumento que recibe: Un array de objetos con las claves empleado y skills (donde skills es un array de strings). Ej: [{ empleado: "Luis", skills: ["JS", "React"] }, { empleado: "Maria", skills: ["Python", "SQL"] }] 
 */
+
+const employeeSkills = [
+    { empleado: "Luis", skills: ["JS", "React"] },
+    { empleado: "Maria", skills: ["Python", "SQL"] }
+];
+
+function habilitys (hab) {
+    return hab.flatMap(employee => employee.skills);
+}
+console.log(habilitys(employeeSkills))
