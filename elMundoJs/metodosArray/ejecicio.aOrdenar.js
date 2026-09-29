@@ -1,102 +1,103 @@
 /* 
-Ejercicio 1.1: Precios con descuento
+.filter()
+Ejercicio 1.1
 
-Método: .map()
+Método: .filter()
 
-Qué debe hacer la función: Devolver un nuevo array con todos los precios con un 15% de descuento aplicado.
+Qué debe hacer la función: Devolver un nuevo array únicamente con los números pares.
 
-Argumento que recibe: Un array de números (precios). Ej: [100, 200, 300]
+Argumento que recibe: Un array de números. Ej: [1, 2, 3, 4, 5, 6]
 
-Ejercicio 1.2: Formateador de nombres de usuario
+Ejercicio 1.2
 
-Método: .map()
+Método: .filter()
 
-Qué debe hacer la función: Devolver un nuevo array de strings con el formato "Usuario: [nombre] ([rol])".
+Qué debe hacer la función: Devolver un nuevo array con los usuarios cuyo rol sea "admin".
 
-Argumento que recibe: Un array de objetos con las claves nombre y rol. Ej: [{ nombre: "Ana", rol: "admin" }, { nombre: "Pedro", rol: "user" }]
+Argumento que recibe: Un array de objetos con las claves nombre y rol. Ej: [{ nombre: "Ana", rol: "admin" }, { nombre: "Pedro", rol: "user" }, { nombre: "Lucia", rol: "admin" }]
 
-.forEach()
-Ejercicio 2.1: Notificador de saldos
+.find()
+Ejercicio 2.1
 
-Método: .forEach()
+Método: .find()
 
-Qué debe hacer la función: Imprimir por consola el mensaje "Cuenta N° [índice + 1]: $[monto]" por cada elemento del array. La función no debe retornar nada.
+Qué debe hacer la función: Encontrar y devolver el primer número que sea mayor a 50.
 
-Argumento que recibe: Un array de números (saldos). Ej: [1500, 0, 4300]
+Argumento que recibe: Un array de números. Ej: [10, 25, 60, 45, 80]
 
-Ejercicio 2.2: Generador de reportes de stock
+Ejercicio 2.2
 
-Método: .forEach()
+Método: .find()
 
-Qué debe hacer la función: Imprimir por consola "[producto]: Quedan [cantidad] unidades" si la cantidad es mayor a 0, o "[producto]: SIN STOCK" si la cantidad es 0. La función no debe retornar nada.
+Qué debe hacer la función: Encontrar y devolver el objeto del producto cuyo id coincida con el buscado (ej: id 3).
 
-Argumento que recibe: Un array de objetos con las claves producto y cantidad. Ej: [{ producto: "Teclado", cantidad: 5 }, { producto: "Mouse", cantidad: 0 }]
+Argumento que recibe: Un array de objetos con las claves id y nombre. Ej: [{ id: 1, nombre: "Mouse" }, { id: 3, nombre: "Teclado" }, { id: 5, nombre: "Monitor" }]
 
-.reduce()
-Ejercicio 3.1: Promedio de notas
+.findIndex()
+Ejercicio 3.1
 
-Método: .reduce()
+Método: .findIndex()
 
-Qué debe hacer la función: Devolver el promedio final (número) redondeado o exacto de todas las notas.
+Qué debe hacer la función: Devolver el índice del primer elemento que sea un string vacío "".
 
-Argumento que recibe: Un array de números (notas). Ej: [7, 8, 9, 10]
+Argumento que recibe: Un array de strings. Ej: ["hola", "mundo", "", "javascript"]
 
-Ejercicio 3.2: Balance total de caja
+Ejercicio 3.2
 
-Método: .reduce()
+Método: .findIndex()
 
-Qué debe hacer la función: Devolver la suma total de dinero ingresado considerando el tipo de movimiento (ingreso suma, egreso resta).
+Qué debe hacer la función: Devolver el índice del primer usuario que no tenga stock (stock === 0).
 
-Argumento que recibe: Un array de objetos con las claves monto y tipo. Ej: [{ monto: 1000, tipo: "ingreso" }, { monto: 400, tipo: "egreso" }]
+Argumento que recibe: Un array de objetos con las claves item y stock. Ej: [{ item: "A", stock: 10 }, { item: "B", stock: 0 }, { item: "C", stock: 5 }]
 
-.reduceRight()
-Ejercicio 4.1: Inversor de ruta de archivos
+.some()
+Ejercicio 4.1
 
-Método: .reduceRight()
+Método: .some()
 
-Qué debe hacer la función: Construir y devolver un string que concatene todas las carpetas separadas por / pero en orden inverso (desde la última hasta la primera).
+Qué debe hacer la función: Retornar true si al menos un número es negativo, o false en caso contrario.
 
-Argumento que recibe: Un array de strings (nombres de carpetas). Ej: ["documentos", "proyectos", "javascript"]
+Argumento que recibe: Un array de números. Ej: [5, 12, -3, 8]
 
-Ejercicio 4.2: Historial de cambios más recientes
+Ejercicio 4.2
 
-Método: .reduceRight()
+Método: .some()
 
-Qué debe hacer la función: Retornar un string acumulado con el formato "[version]: [cambio] | " procesando los elementos desde el último registrado hasta el primero.
+Qué debe hacer la función: Retornar true si al menos una tarea figura con completada: true.
 
-Argumento que recibe: Un array de objetos con las claves version y cambio. Ej: [{ version: "v1.0", cambio: "Inicio" }, { version: "v1.1", cambio: "Fix login" }]
+Argumento que recibe: Un array de objetos con las claves tarea y completada. Ej: [{ tarea: "Comprar pan", completada: false }, { tarea: "Estudiar JS", completada: true }]
 
-.flatMap()
-Ejercicio 5.1: Extractor de hashtags
+.every()
+Ejercicio 5.1
 
-Método: .flatMap()
+Método: .every()
 
-Qué debe hacer la función: Separar los hashtags de cada publicación y devolver un único array plano con todos los hashtags individuales.
+Qué debe hacer la función: Retornar true si todos los números son mayores a 0.
 
-Argumento que recibe: Un array de strings (frases de hashtags). Ej: ["#js #web", "#css #design"]
+Argumento que recibe: Un array de números. Ej: [4, 12, 1, 9]
 
-Ejercicio 5.2: Aplanador de habilidades
+Ejercicio 5.2
 
-Método: .flatMap()
+Método: .every()
 
-Qué debe hacer la función: Devolver un único array plano con todas las habilidades (skills) de todos los empleados sin subarrays anidados.
+Qué debe hacer la función: Retornar true si todos los empleados tienen una antigüedad mayor o igual a 1 año (antiguedad >= 1).
 
-Argumento que recibe: Un array de objetos con las claves empleado y skills (donde skills es un array de strings). Ej: [{ empleado: "Luis", skills: ["JS", "React"] }, { empleado: "Maria", skills: ["Python", "SQL"] }]
+Argumento que recibe: Un array de objetos con las claves nombre y antiguedad. Ej: [{ nombre: "Carlos", antiguedad: 2 }, { nombre: "Sofía", antiguedad: 1 }]
 
-.flat()
-Ejercicio 6.1: Limpiador de matrices simples
+.includes()
+Ejercicio 6.1
 
-Método: .flat()
+Método: .includes()
 
-Qué debe hacer la función: Desanidar una matriz de 3 niveles de profundidad y devolver un array totalmente plano de números.
+Qué debe hacer la función: Retornar true si el array incluye la palabra "admin".
 
-Argumento que recibe: Un array con múltiples niveles de anidación. Ej: [1, [2, [3, [4]]]]
+Argumento que recibe: Un array de strings (roles). Ej: ["guest", "editor", "admin"]
 
-Ejercicio 6.2: Aplanador de estructura organizacional
+Ejercicio 6.2
 
-Método: .flat()
+Método: .includes()
 
-Qué debe hacer la función: Aplanar un array de departamentos anidados en 1 nivel de profundidad para devolver un array simple con todos los objetos de personas.
+Qué debe hacer la función: Retornar true si el número de la suerte (ej: 7) se encuentra dentro de los elegidos.
 
-Argumento que recibe: Un array que contiene subarrays de objetos con las claves nombre y puesto. Ej: [[{ nombre: "Carlos", puesto: "Dev" }], [{ nombre: "Ana", puesto: "QA" }]]
+Argumento que recibe: Un array de números. Ej: [3, 5, 9, 7, 2]
 */
