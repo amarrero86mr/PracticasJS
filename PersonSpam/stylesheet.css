@@ -1,0 +1,31 @@
+body {
+    background-color: rgb(214, 220, 192);
+}
+
+.headerPerson {
+    height:20%;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 1rem 1rem 2rem;
+    gap: 10rem;
+    align-items: center;
+}
+h2 {
+    margin: auto;
+    font-size: 2rem;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #6546a0;
+}
+.logoInicio>img {
+    height: 4rem;
+}
+
+.divMain{
+    margin: 0%;
+    padding: 0%;
+    width: 100%;
+    height:80%;
+    border:solid 4px #6546a0;
+    border-radius: 2rem;
+
+}
