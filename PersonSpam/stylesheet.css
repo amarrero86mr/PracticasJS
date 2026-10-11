@@ -1,31 +1,75 @@
 body {
     background-color: rgb(214, 220, 192);
+    height: 100%;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .headerPerson {
-    height:20%;
+    height: 20%;
     display: flex;
     flex-direction: row;
     padding: 1rem 1rem 1rem 2rem;
     gap: 10rem;
     align-items: center;
 }
+
 h2 {
     margin: auto;
     font-size: 2rem;
-    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #6546a0;
 }
+
 .logoInicio>img {
     height: 4rem;
 }
 
-.divMain{
-    margin: 0%;
-    padding: 0%;
-    width: 100%;
-    height:80%;
-    border:solid 4px #6546a0;
+.divMain {
+    margin: auto;
+    width: 60vw;
+    height: 60vh;
+    border: solid 4px #6546a0;
     border-radius: 2rem;
+}
+
+.formPrincipal {
+    margin: 15vh auto 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    gap: 2.5rem;
+}
+
+fieldset {
+    width: 20rem;
+    border: 3px solid #6546a0;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+legend {
+    padding: 0 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #6546a0;
+}
+
+input,
+button {
+    all: unset;
+    appearance: none;
+    width: 100%;
+    border: solid 2px rgba(148, 190, 31, 0.49);
+    display: flex;
+    padding: auto;
+    border-radius: 6px;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.algho {
+    width: 18vw;
+    background-color: rgb(148, 190, 31);
 
 }

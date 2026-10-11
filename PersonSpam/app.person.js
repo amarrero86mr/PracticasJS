@@ -36,6 +36,7 @@ vistaPrincipal.className = 'vistaPincipal';
 
 // creacion de formulario obligatorio solicitando destinatario
 const formPrincipal = document.createElement('form');
+formPrincipal.className = 'formPrincipal';
 const tituloFromPrincipal = document.createElement('h2');
 tituloFromPrincipal.innerText = 'Nuevo Chat';
 formPrincipal.appendChild(tituloFromPrincipal);
