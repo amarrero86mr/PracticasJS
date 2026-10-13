@@ -8,9 +8,8 @@ body {
     height: 20%;
     display: flex;
     flex-direction: row;
-    padding: 1rem 1rem 1rem 2rem;
-    gap: 10rem;
-    align-items: center;
+    padding: 1rem;
+    justify-content: space-between;
 }
 
 h2 {
@@ -27,12 +26,15 @@ h2 {
     margin: auto;
     width: 60vw;
     height: 60vh;
-    border: solid 4px #6546a0;
+    border: 4px solid transparent;
     border-radius: 2rem;
+    background: 
+    linear-gradient(rgb(214, 220, 192), rgb(214, 220, 192)) padding-box,
+    linear-gradient(to right, #4565a0, #4513a2) border-box;    
 }
 
 .formPrincipal {
-    margin: 15vh auto 15vh;
+    margin: 4rem auto 4rem;
     display: flex;
     flex-direction: column;
     justify-self: center;
@@ -40,7 +42,7 @@ h2 {
 }
 
 fieldset {
-    width: 20rem;
+    width: 22rem;
     border: 3px solid #6546a0;
     border-radius: 8px;
     padding: 2rem;
@@ -57,7 +59,9 @@ input,
 button {
     all: unset;
     appearance: none;
-    width: 100%;
+    margin: auto;
+    margin-bottom: 1rem;
+    width: 80%;
     border: solid 2px rgba(148, 190, 31, 0.49);
     display: flex;
     padding: auto;
@@ -65,9 +69,12 @@ button {
     height: 3rem;
     align-items: center;
     justify-content: center;
-    
+    font-weight: 600;
 }
-
+button{
+    background-color: rgba(148, 190, 31, 0.653);
+    color: #6546a0;
+}
 .algho {
     width: 18vw;
     background-color: rgb(148, 190, 31);
