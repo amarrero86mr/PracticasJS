@@ -10,6 +10,12 @@ header.className = 'headerPerson';
 
 const logoInicioPerson = document.createElement('a')
 logoInicioPerson.className = 'logoInicio'
+logoInicioPerson.addEventListener('click', (e) =>{
+    e.preventDefault();
+    divMain.innerHTML = '';
+    divMain.appendChild(creacionVentanaPrincipal(funcionPrueba))
+
+})
 
 const logoSvg = document.createElement('img')
 logoSvg.src = './assets/logoPersonSvg.svg'
@@ -27,9 +33,21 @@ const divMain = document.createElement('div');
 divMain.className = 'divMain'
 
 // funcion de creacionde vista principal
-divMain.appendChild(creacionVentanaPrincipal())
-root.appendChild(divMain)
+divMain.appendChild(creacionVentanaPrincipal(funcionPrueba))
 
+// funcion de prueba de ventana de prueba
+export default function funcionPrueba (nombre) {
+    
+    const divPrueba = document.createElement('div');
+    const tituloPrueba = document.createElement('h1');
+    tituloPrueba.innerText = nombre;
+    divPrueba.appendChild(tituloPrueba);
+    
+    divMain.innerHTML = ''
+    divMain.appendChild(divPrueba)
+}
+
+root.appendChild(divMain)
 // creacion de navegacion lateral izquierdo -->
 // lista los destinatarios (orden ultima interacion) y su ultimo mensaje
 // al clickear elemento en la lista debe mostrar la conversacion en ventana de conversacion
