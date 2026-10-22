@@ -4,9 +4,12 @@ const chatAppState = {
   conversaciones: [
     {
       id: "conv_101",
-      tipo: "individual", // 'individual' o 'grupo'
-      titulo: null,       // Si es grupo, acá va el nombre (ej: "Proyecto Wall-E")
-      participantes: ["user_001", "user_002"],
+      // tipo: "individual", // 'individual' o 'grupo'
+      // titulo: null,       // Si es grupo, acá va el nombre (ej: "Proyecto Wall-E")
+      // participantes: ["user_001", "user_002"],
+      destinatario: "user_002",
+      nombre: "Amigo del Robot",
+      avatar: "https://robohash.org/",
       
       // Metadatos para la UI (para mostrar el último mensaje rápido sin cargar todo)
       ultimoMensaje: {
@@ -41,3 +44,24 @@ const chatAppState = {
     "user_002": { nombre: "Amigo del Robot", avatar: "url2" }
   }
 };
+
+export default chatAppState;
+
+
+// const timestamp = 1792639837075;
+// const fecha = new Date(timestamp);
+// const fechaAhora = new Date().toLocaleString('es-AR', {dateStyle: 'medium'})
+// console.log(fechaAhora.valueOf())
+// if (fecha.toLocaleString('es-AR', {dateStyle: 'medium'}) == fechaAhora) {
+//   const fechaLegible = fecha.toLocaleString('es-AR', {timeStyle:'short'})
+//   // console.log(fechaLegible)
+
+// } else {
+//   const fechaLegible = fecha.toLocaleString('es-AR', {
+//   dateStyle: 'medium', // Muestra la fecha (ej: 30 sept 2024)
+//   timeStyle: 'short'   // Muestra la hora (ej: 10:40)
+// });
+//   // console.log(fechaLegible)
+// }
+
+

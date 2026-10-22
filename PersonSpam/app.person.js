@@ -1,4 +1,7 @@
 import creacionVentanaPrincipal from "./components/ventanaPrincipal.js";
+import creacionNavegador from "./components/navegador.js";
+import chatAppState from "./ejemploObjMensaje.js";
+
 // vinculacion del html
 const root = document.querySelector('.root');
 
@@ -39,9 +42,7 @@ divMain.appendChild(creacionVentanaPrincipal(funcionPrueba))
 export default function funcionPrueba (nombre) {
     
     const divPrueba = document.createElement('div');
-    const tituloPrueba = document.createElement('h1');
-    tituloPrueba.innerText = nombre;
-    divPrueba.appendChild(tituloPrueba);
+    divPrueba.appendChild(creacionNavegador(chatAppState));
     
     divMain.innerHTML = ''
     divMain.appendChild(divPrueba)
