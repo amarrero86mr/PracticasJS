@@ -1,5 +1,5 @@
 // ejemplo proporcionado por IA
-const chatAppState = { 
+const chatAppState = {
   // Lista de conversaciones (Chats individuales o grupales)
   conversaciones: [
     {
@@ -10,7 +10,7 @@ const chatAppState = {
       destinatario: "user_002",
       nombre: "Amigo del Robot",
       avatar: "https://robohash.org/",
-      
+
       // Metadatos para la UI (para mostrar el último mensaje rápido sin cargar todo)
       ultimoMensaje: {
         texto: "¡Dale, nos vemos en un rato!",
@@ -35,13 +35,45 @@ const chatAppState = {
           leido: false
         }
       ]
+    },
+    {
+      id: "conv_102",
+      destinatario: "user_003",
+      nombre: "clar kent (soy superman)",
+      avatar: "https://robohash.org/",
+
+      
+      ultimoMensaje: {
+        texto: "y no sabes quien aparecio... lex",
+        timestamp: 1727731202222,
+        remitenteId: "user_003"
+      },
+
+      // Lista de mensajes de esta conversación específica
+      mensajes: [
+        {
+          id: "msg_903",
+          remitenteId: "user_001",
+          texto: "entonces estaba reporteando con bruce, y??",
+          timestamp: 1727731102211,
+          leido: true
+        },
+        {
+          id: "msg_904",
+          remitenteId: "user_003",
+          texto: "y no sabes quien aparecio... lex",
+          timestamp: 1727731202222,
+          leido: false
+        }
+      ]
     }
   ],
 
   // Diccionario o catálogo de usuarios (evita repetir datos de perfil en cada mensaje)
   usuariosCatalogo: {
     "user_001": { nombre: "Agustín", avatar: "url1" },
-    "user_002": { nombre: "Amigo del Robot", avatar: "url2" }
+    "user_002": { nombre: "Amigo del Robot", avatar: "url2" },
+    "user_003": { nombre: "clar kent", avatar: "url3" }
   }
 };
 

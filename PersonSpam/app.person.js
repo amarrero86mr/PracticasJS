@@ -40,12 +40,9 @@ divMain.appendChild(creacionVentanaPrincipal(funcionPrueba))
 
 // funcion de prueba de ventana de prueba
 export default function funcionPrueba (nombre) {
-    
-    const divPrueba = document.createElement('div');
-    divPrueba.appendChild(creacionNavegador(chatAppState));
-    
+        
     divMain.innerHTML = ''
-    divMain.appendChild(divPrueba)
+    divMain.appendChild(creacionNavegador(chatAppState))
 }
 
 root.appendChild(divMain)

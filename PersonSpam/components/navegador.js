@@ -25,7 +25,7 @@ function creacionNavegador(chatApp) {
             fechaLegible = fecha.toLocaleString('es-AR', { timeStyle: 'short' })
         } else {
             fechaLegible = fecha.toLocaleString('es-AR', {
-                dateStyle: 'medium'
+                dateStyle: 'short' 
             });
             // console.log(fechaLegible)
         }
