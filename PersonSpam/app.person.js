@@ -1,6 +1,7 @@
 import creacionVentanaPrincipal from "./components/ventanaPrincipal.js";
 import creacionNavegador from "./components/navegador.js";
 import chatAppState from "./ejemploObjMensaje.js";
+import creacionVentanaChat from "./components/ventanaChat.js";
 
 // vinculacion del html
 const root = document.querySelector('.root');
@@ -17,7 +18,7 @@ logoInicioPerson.addEventListener('click', (e) =>{
     e.preventDefault();
     divMain.innerHTML = '';
     divMain.appendChild(creacionVentanaPrincipal(funcionPrueba))
-
+    divMain.style.display = "inherit";
 })
 
 const logoSvg = document.createElement('img')
@@ -43,6 +44,9 @@ export default function funcionPrueba (nombre) {
         
     divMain.innerHTML = ''
     divMain.appendChild(creacionNavegador(chatAppState))
+    //le pasamos un objeto harcodeado como prueba
+    divMain.appendChild(creacionVentanaChat(chatAppState))
+    divMain.style.display = 'flex';
 }
 
 root.appendChild(divMain)
@@ -50,6 +54,7 @@ root.appendChild(divMain)
 // lista los destinatarios (orden ultima interacion) y su ultimo mensaje
 // al clickear elemento en la lista debe mostrar la conversacion en ventana de conversacion
 // no debe cargarse chats con la vista proncipal - puede verse vacia
+
 
 // creacion de ventana conversaciones -->
 // lista las conversaciones ordenadas por fecha crecientemene y enfocando los ultimos chats

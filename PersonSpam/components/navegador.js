@@ -48,7 +48,7 @@ function creacionNavegador(chatApp) {
         nav.appendChild(chatLink)
     });
 
-    return nav
+    return nav;
 }
 
 export default creacionNavegador;
