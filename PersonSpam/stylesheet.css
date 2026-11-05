@@ -78,11 +78,6 @@ button{
     background-color: rgba(148, 190, 31, 0.653);
     color: #6546a0;
 }
-.algho {
-    width: 18vw;
-    background-color: rgb(148, 190, 31);
-
-}
 
 .navegador{
     width: 35%;
@@ -122,15 +117,19 @@ button{
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-
+.divChat {
+    margin: 0.25rem;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
 .ventanaChat {
-    margin: 0.5rem;
-    padding: 0.5rem;
     display: flex;
     flex-direction: column-reverse;
     flex-wrap: nowrap;
     gap: 1rem;
-    width: 65%;
+    width: 100%;
     height: 95%;
     overflow-y: auto;
 }
@@ -152,4 +151,31 @@ button{
     width: 100%;
     color: #4513a2;
     text-align: right;
+}
+.formMsn {
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    justify-content: center;
+}
+
+.casillaMensaje{
+    all: unset;
+    appearance: none;
+    width: 100%;
+    height:100%;
+    padding: 0.2rem;
+    border: solid 2px rgba(148, 190, 31, 0.49);  
+    border-radius: 6px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    resize: vertical;
+    text-wrap: wrap;
+}
+
+.btnEnviar {
+    width: 15%;
+}
+.btnEnviar>img {
+    width: 1.5rem;
 }

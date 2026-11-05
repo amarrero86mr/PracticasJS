@@ -2,9 +2,12 @@
 // lista las conversaciones ordenadas por fecha crecientemene y enfocando los ultimos chats
 
 // no debe verse en la pantalla principal
-function creacionVentanaChat (chat) {
+function creacionVentanaChat (chat, creacionCasillaMsn) {
     const listaChat = chat.conversaciones[0].mensajes
     
+    const divChat = document.createElement('div')
+    divChat.className = 'divChat';
+
     const ventanaChat = document.createElement('div')
     ventanaChat.className = "ventanaChat"
     // lista paginada (20 mensajes) voton de mostrar mas (al final)
@@ -33,8 +36,10 @@ function creacionVentanaChat (chat) {
     }
     // con CSS invertimos el orden
     // y mosicionamos mensajes segun id => classname
+    divChat.appendChild(ventanaChat)
+    divChat.appendChild(creacionCasillaMsn())
 
-    return ventanaChat
+    return divChat;
 }
 
 export default creacionVentanaChat;

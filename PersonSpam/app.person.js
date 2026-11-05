@@ -2,6 +2,7 @@ import creacionVentanaPrincipal from "./components/ventanaPrincipal.js";
 import creacionNavegador from "./components/navegador.js";
 import chatAppState from "./ejemploObjMensaje.js";
 import creacionVentanaChat from "./components/ventanaChat.js";
+import creacionCasillaMsn from "./components/mensajear.js";
 
 // vinculacion del html
 const root = document.querySelector('.root');
@@ -45,11 +46,10 @@ export default function funcionPrueba (nombre) {
     divMain.innerHTML = ''
     divMain.appendChild(creacionNavegador(chatAppState))
     //le pasamos un objeto harcodeado como prueba
-    divMain.appendChild(creacionVentanaChat(chatAppState))
+    divMain.appendChild(creacionVentanaChat(chatAppState, creacionCasillaMsn))
     divMain.style.display = 'flex';
 }
 
-root.appendChild(divMain)
 // creacion de navegacion lateral izquierdo -->
 // lista los destinatarios (orden ultima interacion) y su ultimo mensaje
 // al clickear elemento en la lista debe mostrar la conversacion en ventana de conversacion
@@ -64,3 +64,5 @@ root.appendChild(divMain)
 // input para escribir mensaje (evio con tecla enter o bonton)
 // boton de envio de mensaje
 // no debe verse en la pantalla principal
+
+root.appendChild(divMain)
