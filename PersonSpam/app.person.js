@@ -3,10 +3,12 @@ import creacionNavegador from "./components/navegador.js";
 import chatAppState from "./ejemploObjMensaje.js";
 import creacionVentanaChat from "./components/ventanaChat.js";
 import creacionCasillaMsn from "./components/mensajear.js";
+import getStorage from "./functions/storage.function.js";
 
+const datosPersonSpam = getStorage();
+console.log(datosPersonSpam)
 // vinculacion del html
 const root = document.querySelector('.root');
-
 
 // creacion de header -->
 // dentro del Header crear boton de inicio lleva a vista principal
@@ -44,9 +46,9 @@ divMain.appendChild(creacionVentanaPrincipal(funcionPrueba))
 export default function funcionPrueba (nombre) {
         
     divMain.innerHTML = ''
-    divMain.appendChild(creacionNavegador(chatAppState))
+    divMain.appendChild(creacionNavegador(datosPersonSpam))
     //le pasamos un objeto harcodeado como prueba
-    divMain.appendChild(creacionVentanaChat(chatAppState, creacionCasillaMsn))
+    divMain.appendChild(creacionVentanaChat(datosPersonSpam, creacionCasillaMsn))
     divMain.style.display = 'flex';
 }
 
@@ -66,3 +68,12 @@ export default function funcionPrueba (nombre) {
 // no debe verse en la pantalla principal
 
 root.appendChild(divMain)
+
+// functions en ./functions -> almacenamiento de chats
+// - function "getStorage" traer del localStorage el objChat ->temporalChat
+// - function "compareDestin" comprar existencias destinatario en pantalla principal
+// si es nuevo, cargarlo en futura funcion de guardado y pasar destinatario
+// si existe, pasar destinatario
+// - no funcion, pasas los datos temporales de temporalChat a creacionNavegador
+// - no funcion, pasar los datos del nuevo destinatario o ultimo destinatario a la ventana de chat
+// function "setStorage" guardado de los datos temporalChat
