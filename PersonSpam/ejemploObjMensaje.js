@@ -9,7 +9,7 @@ const chatAppState = {
       // participantes: ["user_001", "user_002"],
       destinatario: "user_002",
       nombre: "Amigo del Robot",
-      avatar: "https://robohash.org/",
+      avatar: "https://robohash.org/user_002",
 
       // Metadatos para la UI (para mostrar el último mensaje rápido sin cargar todo)
       ultimoMensaje: {
@@ -54,7 +54,7 @@ const chatAppState = {
       id: "conv_102",
       destinatario: "user_003",
       nombre: "clar kent (soy superman)",
-      avatar: "https://robohash.org/",
+      avatar: "https://robohash.org/user_003",
 
       
       ultimoMensaje: {
@@ -86,8 +86,8 @@ const chatAppState = {
   // Diccionario o catálogo de usuarios (evita repetir datos de perfil en cada mensaje)
   usuariosCatalogo: {
     "user_001": { nombre: "Agustín", avatar: "url1" },
-    "user_002": { nombre: "Amigo del Robot", avatar: "url2" },
-    "user_003": { nombre: "clar kent", avatar: "url3" }
+    "user_002": { nombre: "Amigo del Robot", avatar: "https://robohash.org/user_002" },
+    "user_003": { nombre: "clar kent", avatar: "https://robohash.org/user_003" }
   }
 };
 

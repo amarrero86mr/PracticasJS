@@ -44,11 +44,11 @@ divMain.appendChild(creacionVentanaPrincipal(funcionPrueba))
 
 // funcion de prueba de ventana de prueba
 export default function funcionPrueba (nombre) {
-        
+    
     divMain.innerHTML = ''
     divMain.appendChild(creacionNavegador(datosPersonSpam))
-    //le pasamos un objeto harcodeado como prueba
-    divMain.appendChild(creacionVentanaChat(datosPersonSpam, creacionCasillaMsn))
+    
+    divMain.appendChild(creacionVentanaChat(datosPersonSpam, nombre, creacionCasillaMsn))
     divMain.style.display = 'flex';
 }
 

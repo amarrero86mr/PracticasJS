@@ -12,6 +12,7 @@ function creacionNavegador(chatApp) {
 
     // creacion de lista de conversaciones
 
+    if (chatApp.conversaciones.length > 0) {
 
     const lisatasId = chatApp.conversaciones.toSorted((a, b) => b.ultimoMensaje.timestamp - a.ultimoMensaje.timestamp)
 
@@ -36,7 +37,7 @@ function creacionNavegador(chatApp) {
         chatLink.id = chat.id;
         chatLink.innerHTML = `
             <div>
-            <img src="${chat.avatar}${chat.destinatario}.png" alt="avatar de ${chat.nombre} width="1.5rem">
+            <img src="${chat.avatar}.png" alt="avatar de ${chat.nombre} width="1.5rem">
             <h3>${chat.nombre}</h3>
             </div>
             <div>
@@ -47,6 +48,7 @@ function creacionNavegador(chatApp) {
 
         nav.appendChild(chatLink)
     });
+    }
 
     return nav;
 }

@@ -40,7 +40,7 @@ function creacionVentanaPrincipal(funcionPrueba) {
 
         const destinatario = inputFormPrincipal.value.trim()
         if (!destinatario || destinatario === ''){ return }
-
+        
         funcionPrueba(destinatario);
     })
     
