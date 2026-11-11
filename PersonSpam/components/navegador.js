@@ -5,7 +5,7 @@
 const fechaAhora = new Date().toLocaleString('es-AR', { dateStyle: 'medium' })
 
 
-function creacionNavegador(chatApp) {
+function creacionNavegador(chatApp, destinatario) {
 
     const nav = document.createElement('div');
     nav.className = 'navegador';
@@ -31,10 +31,15 @@ function creacionNavegador(chatApp) {
             // console.log(fechaLegible)
         }
 
-
+        let classSelect = ""
+        
 
         const chatLink = document.createElement('div');
         chatLink.id = chat.id;
+        if (destinatario == chat.nombre) {
+            classSelect = "destSelected"
+            chatLink.className = classSelect
+        }
         chatLink.innerHTML = `
             <div>
             <img src="${chat.avatar}.png" alt="avatar de ${chat.nombre} width="1.5rem">

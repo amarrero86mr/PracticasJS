@@ -20,7 +20,7 @@ function nuevoDestinatario(chat, destinatario) {
         avatar: `https://robohash.org/${nuevoId}`
     };
 
-    console.log(`Usuario creado con ID: ${nuevoId}`);
+    
     return nuevoId;
 }
 

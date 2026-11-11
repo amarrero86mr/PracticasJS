@@ -111,6 +111,9 @@ button:hover {
     border: 1px transparent;
     border-radius: 1.5rem;
 }
+.navegador>.destSelected{
+    border: 2px rgba(148, 190, 31) solid;
+}
 .navegador>div>div{
     margin: 0.25rem;
     display: flex;

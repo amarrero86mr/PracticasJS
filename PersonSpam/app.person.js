@@ -4,6 +4,7 @@ import chatAppState from "./ejemploObjMensaje.js";
 import creacionVentanaChat from "./components/ventanaChat.js";
 import creacionCasillaMsn from "./components/mensajear.js";
 import getStorage from "./functions/storage.function.js";
+import selectedDestinatario from "./functions/chatSelect.function.js";
 
 const datosPersonSpam = getStorage();
 console.log(datosPersonSpam)
@@ -44,11 +45,11 @@ divMain.appendChild(creacionVentanaPrincipal(funcionPrueba))
 
 // funcion de prueba de ventana de prueba
 export default function funcionPrueba (nombre) {
-    
+    const destinatario = selectedDestinatario(datosPersonSpam, nombre)
     divMain.innerHTML = ''
-    divMain.appendChild(creacionNavegador(datosPersonSpam))
+    divMain.appendChild(creacionNavegador(datosPersonSpam, destinatario))
     
-    divMain.appendChild(creacionVentanaChat(datosPersonSpam, nombre, creacionCasillaMsn))
+    divMain.appendChild(creacionVentanaChat(datosPersonSpam, destinatario, creacionCasillaMsn))
     divMain.style.display = 'flex';
 }
 
