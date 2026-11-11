@@ -1,6 +1,6 @@
-import funcionPrueba from "../app.person.js";
+import cambioVenta from "../app.person.js";
 
-function creacionVentanaPrincipal(funcionPrueba) {
+function creacionVentanaPrincipal(cambioVentana) {
     // creacion de vista principal -->
     // cracion de input (habre conversacion con un destinatario o crea un destinatario nuevo)
     // debe mantener el header.
@@ -41,7 +41,7 @@ function creacionVentanaPrincipal(funcionPrueba) {
         const destinatario = inputFormPrincipal.value.trim()
         if (!destinatario || destinatario === ''){ return }
         
-        funcionPrueba(destinatario);
+        cambioVentana(destinatario);
     })
     
     
