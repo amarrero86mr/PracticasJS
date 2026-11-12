@@ -6,6 +6,7 @@ import creacionCasillaMsn from "./components/mensajear.js";
 import getStorage from "./functions/storage.function.js";
 import selectedDestinatario from "./functions/chatSelect.function.js";
 import setStorage from "./functions/setStorage.function.js";
+import traerLlevar from "./functions/goback.function.js";
 
 const datosPersonSpam = getStorage();
 console.log(datosPersonSpam)
@@ -44,15 +45,18 @@ divMain.className = 'divMain'
 // funcion de creacionde vista principal
 divMain.appendChild(creacionVentanaPrincipal(cambioVenta))
 
+
+
 // funcion de prueba de ventana de prueba
 export default function cambioVenta (nombre) {
     
     const destinatario = selectedDestinatario(datosPersonSpam, nombre, setStorage)
     
     divMain.innerHTML = ''
-    divMain.appendChild(creacionNavegador(datosPersonSpam, destinatario))
-    
-    divMain.appendChild(creacionVentanaChat(datosPersonSpam, destinatario, creacionCasillaMsn))
+    const navegador = creacionNavegador(datosPersonSpam, destinatario, traerLlevar)
+    divMain.appendChild(navegador[0])
+
+    divMain.appendChild(creacionVentanaChat(datosPersonSpam, navegador[1], creacionCasillaMsn))
     divMain.style.display = 'flex';
 }
 

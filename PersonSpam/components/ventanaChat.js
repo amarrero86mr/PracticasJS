@@ -3,7 +3,7 @@
 
 // no debe verse en la pantalla principal
 function creacionVentanaChat(chat, destinatario, creacionCasillaMsn) {
-
+console.log(destinatario)
     const divChat = document.createElement('div')
     divChat.className = 'divChat';
 

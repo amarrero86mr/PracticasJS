@@ -5,7 +5,9 @@
 const fechaAhora = new Date().toLocaleString('es-AR', { dateStyle: 'medium' })
 
 
-function creacionNavegador(chatApp, destinatario) {
+function creacionNavegador(chatApp, destinatario, traerLlevar) {
+
+    let convIdSelect = ''
 
     const nav = document.createElement('div');
     nav.className = 'navegador';
@@ -51,11 +53,17 @@ function creacionNavegador(chatApp, destinatario) {
             </div>
         `;
 
+        chatLink.addEventListener('click', (e) => {
+            
+            
+            convIdSelect = traerLlevar(chat.nombre)
+        })
+
         nav.appendChild(chatLink)
     });
     }
 
-    return nav;
+    return [nav, convIdSelect];
 }
 
 export default creacionNavegador;
