@@ -2,17 +2,17 @@
 // lista las conversaciones ordenadas por fecha crecientemene y enfocando los ultimos chats
 
 // no debe verse en la pantalla principal
-function creacionVentanaChat(chat, destinatario, creacionCasillaMsn) {
-console.log(destinatario)
+function creacionVentanaChat(chat, chatSelected, creacionCasillaMsn) {
+console.log(chatSelected)
     const divChat = document.createElement('div')
     divChat.className = 'divChat';
 
     const ventanaChat = document.createElement('div')
     ventanaChat.className = "ventanaChat"
         
-    if (chat.conversaciones.length > 0) {
+    if (chat.conversaciones.length > 0 && chatSelected != -1) {
     
-        const listaChat = chat.conversaciones[0].mensajes;
+        const listaChat = chat.conversaciones[chatSelected].mensajes;
 
         // lista paginada (20 mensajes) voton de mostrar mas (al final)
         //20 mensajes for en cuenta regresiva listando los mensajes de mayor a menor (timestamp)

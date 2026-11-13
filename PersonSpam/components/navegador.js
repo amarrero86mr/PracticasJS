@@ -7,8 +7,6 @@ const fechaAhora = new Date().toLocaleString('es-AR', { dateStyle: 'medium' })
 
 function creacionNavegador(chatApp, destinatario, traerLlevar) {
 
-    let convIdSelect = ''
-
     const nav = document.createElement('div');
     nav.className = 'navegador';
 
@@ -16,33 +14,33 @@ function creacionNavegador(chatApp, destinatario, traerLlevar) {
 
     if (chatApp.conversaciones.length > 0) {
 
-    const lisatasId = chatApp.conversaciones.toSorted((a, b) => b.ultimoMensaje.timestamp - a.ultimoMensaje.timestamp)
+        const lisatasId = chatApp.conversaciones.toSorted((a, b) => b.ultimoMensaje.timestamp - a.ultimoMensaje.timestamp)
 
-    lisatasId.forEach(chat => {
+        lisatasId.forEach(chat => {
 
-        // manejo de fechas
-        let fechaLegible;
-        const fecha = new Date(chat.ultimoMensaje.timestamp);
+            // manejo de fechas
+            let fechaLegible;
+            const fecha = new Date(chat.ultimoMensaje.timestamp);
 
-        if (fecha.toLocaleString('es-AR', { dateStyle: 'medium' }) == fechaAhora) {
-            fechaLegible = fecha.toLocaleString('es-AR', { timeStyle: 'short' })
-        } else {
-            fechaLegible = fecha.toLocaleString('es-AR', {
-                dateStyle: 'short' 
-            });
-            // console.log(fechaLegible)
-        }
+            if (fecha.toLocaleString('es-AR', { dateStyle: 'medium' }) == fechaAhora) {
+                fechaLegible = fecha.toLocaleString('es-AR', { timeStyle: 'short' })
+            } else {
+                fechaLegible = fecha.toLocaleString('es-AR', {
+                    dateStyle: 'short'
+                });
+                // console.log(fechaLegible)
+            }
 
-        let classSelect = ""
-        
+            let classSelect = ""
+            console.log(destinatario)
 
-        const chatLink = document.createElement('div');
-        chatLink.id = chat.id;
-        if (destinatario == chat.nombre) {
-            classSelect = "destSelected"
-            chatLink.className = classSelect
-        }
-        chatLink.innerHTML = `
+            const chatLink = document.createElement('div');
+            chatLink.id = chat.id;
+            if (destinatario == chat.nombre) {
+                classSelect = "destSelected"
+                chatLink.className = classSelect
+            }
+            chatLink.innerHTML = `
             <div>
             <img src="${chat.avatar}.png" alt="avatar de ${chat.nombre} width="1.5rem">
             <h3>${chat.nombre}</h3>
@@ -53,17 +51,19 @@ function creacionNavegador(chatApp, destinatario, traerLlevar) {
             </div>
         `;
 
-        chatLink.addEventListener('click', (e) => {
-            
-            
-            convIdSelect = traerLlevar(chat.nombre)
-        })
+            chatLink.addEventListener('click', (e) => {
+                e.preventDefault();
 
-        nav.appendChild(chatLink)
-    });
+                if (typeof traerLlevar === 'function') {
+                    traerLlevar(chat.nombre);
+                }
+            })
+
+            nav.appendChild(chatLink)
+        });
     }
 
-    return [nav, convIdSelect];
+    return nav;
 }
 
 export default creacionNavegador;

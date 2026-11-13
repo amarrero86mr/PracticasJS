@@ -53,7 +53,7 @@ const chatAppState = {
     {
       id: "conv_102",
       destinatario: "user_003",
-      nombre: "clar kent (soy superman)",
+      nombre: "clar kent",
       avatar: "https://robohash.org/user_003",
 
       

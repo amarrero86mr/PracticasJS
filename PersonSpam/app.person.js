@@ -50,13 +50,22 @@ divMain.appendChild(creacionVentanaPrincipal(cambioVenta))
 // funcion de prueba de ventana de prueba
 export default function cambioVenta (nombre) {
     
-    const destinatario = selectedDestinatario(datosPersonSpam, nombre, setStorage)
+    let destinatario = selectedDestinatario(datosPersonSpam, nombre, setStorage)
     
     divMain.innerHTML = ''
-    const navegador = creacionNavegador(datosPersonSpam, destinatario, traerLlevar)
-    divMain.appendChild(navegador[0])
 
-    divMain.appendChild(creacionVentanaChat(datosPersonSpam, navegador[1], creacionCasillaMsn))
+    const navegador = creacionNavegador(datosPersonSpam, destinatario, (traerLlevar) => {
+        destinatario = traerLlevar;
+        cambioVenta(destinatario)
+    });
+
+    let chatSelected = datosPersonSpam.conversaciones.findIndex(a => a.nombre === destinatario)
+
+    divMain.appendChild(navegador)
+
+    const ventanaChat = creacionVentanaChat(datosPersonSpam, chatSelected, creacionCasillaMsn) 
+
+    divMain.appendChild(ventanaChat)
     divMain.style.display = 'flex';
 }
 
