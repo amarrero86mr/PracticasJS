@@ -4,6 +4,7 @@ function nuevoDestinatario(chat, destinatario, setStorage) {
     const ids = Object.keys(chat.usuariosCatalogo);
 
     let nuevoId = "user_002";
+    let nuevoConvId = ""
     if (ids.length > 0) {
 
         const ultimoId = ids[ids.length - 1]; // 
@@ -13,12 +14,24 @@ function nuevoDestinatario(chat, destinatario, setStorage) {
         const numeroFormateado = String(siguienteNumero).padStart(3, '0');
 
         nuevoId = `user_${numeroFormateado}`;
+        nuevoConvId = `conv_${numeroFormateado}`;
+        
     }
 
     chat.usuariosCatalogo[nuevoId] = {
         nombre: destinatario,
-        avatar: `https://robohash.org/${nuevoId}`
+        avatar: `https://robohash.org/${nuevoId}`,
     };
+    const nuevaConv = {
+        id: nuevoConvId,
+        destinatario: nuevoId,
+        nombe: destinatario,
+        avatar: `https://robohash.org/${nuevoId}`,
+        ultimoMensaje: [],
+        mensajes: [],
+    }
+    chat.conversaciones[chat.conversaciones.length] = nuevaConv;
+    
     //por motivos de practica de funciones y desarrollo comentamos la siguiente linea
     //setStorage(chat);
     return nuevoId;
