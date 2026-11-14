@@ -39,7 +39,7 @@ function creacionVentanaPrincipal(cambioVentana) {
         e.preventDefault();
 
         const destinatario = inputFormPrincipal.value.trim()
-        if (!destinatario || destinatario === ''){ return }
+        if (!destinatario || destinatario === '' || destinatario === undefined){ return }
         
         cambioVentana(destinatario);
     })

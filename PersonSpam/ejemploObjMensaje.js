@@ -25,28 +25,28 @@ const chatAppState = {
           remitenteId: "user_001",
           texto: "¿Viste cómo quedó el filtro de audio? costo mucho pero salio andando",
           timestamp: 1727731100000,
-          leido: true
+          
         },
         {
           id: "msg_902",
           remitenteId: "user_002",
           texto: "si, quedo como Ro-Bo-Ti-Co, megusta",
           timestamp: 1727731200000,
-          leido: false
+          
         },
         {
           id: "msg_907",
           remitenteId: "user_001",
           texto: "ahora... por donde seguimos? vemos la motorizacion?",
           timestamp: 1727731210000,
-          leido: false
+          
         },
         {
           id: "msg_908",
           remitenteId: "user_002",
           texto: "No se, ya estoy en viaje, nos vemos en un rato!",
           timestamp: 1727731212000,
-          leido: false
+          
         }
       ]
     },
@@ -70,14 +70,14 @@ const chatAppState = {
           remitenteId: "user_001",
           texto: "entonces estaba reporteando con bruce, y??",
           timestamp: 1727731102211,
-          leido: true
+         
         },
         {
           id: "msg_904",
           remitenteId: "user_003",
           texto: "y no sabes quien aparecio... lex",
           timestamp: 1727731202222,
-          leido: false
+          
         }
       ]
     }
@@ -110,3 +110,5 @@ export default chatAppState;
 //   // console.log(fechaLegible)
 // }
 
+// let remitenteAux = chatAppState.conversaciones[0].mensajes.find(msg => msg.remitenteId !== 'user_001')?.remitenteId;
+// console.log(remitenteAux)

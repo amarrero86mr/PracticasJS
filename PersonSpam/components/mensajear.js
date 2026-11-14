@@ -3,8 +3,10 @@
 // boton de envio de mensaje
 // no debe verse en la pantalla principal
 
+import cambioVenta from "../app.person.js";
+
 // deve recivir cllback para modificar chat
-function creacionCasillaMsn () {
+function creacionCasillaMsn (chat, chatSelected, destinatario, setStorage, guardarMensaje, ) {
 
     const formMsn = document.createElement('form');
     formMsn.className = 'formMsn'
@@ -22,10 +24,17 @@ function creacionCasillaMsn () {
     formMsn.appendChild(casillaMensaje);
     formMsn.appendChild(btnEnviar)
 
-    formMsn.addEventListener('click', (e)=>{
+    formMsn.addEventListener('submit', (e)=>{
         e.preventDefault();
         //funcion callback modificar chat
 
+        let msn = casillaMensaje.value;
+        if (msn.trim() === '') return
+
+        guardarMensaje(chat, chatSelected, destinatario, msn, setStorage);
+        casillaMensaje.value = '';
+
+         cambioVenta(destinatario)
     })
 
     return formMsn

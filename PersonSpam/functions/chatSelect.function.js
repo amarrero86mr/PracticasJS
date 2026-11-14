@@ -25,15 +25,18 @@ function nuevoDestinatario(chat, destinatario, setStorage) {
     const nuevaConv = {
         id: nuevoConvId,
         destinatario: nuevoId,
-        nombe: destinatario,
+        nombre: destinatario, // <--- CORREGIDO: ahora dice "nombre" correctamente
         avatar: `https://robohash.org/${nuevoId}`,
-        ultimoMensaje: [],
+        ultimoMensaje: {
+            texto: "Nueva conversación iniciada",
+            timestamp: Date.now(),
+            remitenteId: nuevoId
+        },
         mensajes: [],
     }
-    chat.conversaciones[chat.conversaciones.length] = nuevaConv;
+    chat.conversaciones.push(nuevaConv);
     
-    //por motivos de practica de funciones y desarrollo comentamos la siguiente linea
-    //setStorage(chat);
+    setStorage(chat);
     return nuevoId;
 }
 

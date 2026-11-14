@@ -7,9 +7,10 @@ import getStorage from "./functions/storage.function.js";
 import selectedDestinatario from "./functions/chatSelect.function.js";
 import setStorage from "./functions/setStorage.function.js";
 import traerLlevar from "./functions/goback.function.js";
+import guardarMensaje from "./functions/guardarMensaje.function.js";
 
 const datosPersonSpam = getStorage();
-console.log(datosPersonSpam)
+// console.log(datosPersonSpam)
 // vinculacion del html
 const root = document.querySelector('.root');
 
@@ -63,11 +64,12 @@ export default function cambioVenta (nombre) {
 
     divMain.appendChild(navegador)
 
-    const ventanaChat = creacionVentanaChat(datosPersonSpam, chatSelected, creacionCasillaMsn) 
+    const ventanaChat = creacionVentanaChat(datosPersonSpam, chatSelected, creacionCasillaMsn, destinatario, setStorage, guardarMensaje);
 
     divMain.appendChild(ventanaChat)
     divMain.style.display = 'flex';
-}
+    
+}   
 
 // creacion de navegacion lateral izquierdo -->
 // lista los destinatarios (orden ultima interacion) y su ultimo mensaje

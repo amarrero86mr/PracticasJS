@@ -32,7 +32,7 @@ function creacionNavegador(chatApp, destinatario, traerLlevar) {
             }
 
             let classSelect = ""
-            console.log(destinatario)
+            // console.log(destinatario)
 
             const chatLink = document.createElement('div');
             chatLink.id = chat.id;

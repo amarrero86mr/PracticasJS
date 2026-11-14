@@ -2,7 +2,7 @@
 // lista las conversaciones ordenadas por fecha crecientemene y enfocando los ultimos chats
 
 // no debe verse en la pantalla principal
-function creacionVentanaChat(chat, chatSelected, creacionCasillaMsn) {
+function creacionVentanaChat(chat, chatSelected, creacionCasillaMsn, destinatario, setStorage, guardarMensaje) {
 
     const divChat = document.createElement('div')
     divChat.className = 'divChat';
@@ -43,7 +43,7 @@ function creacionVentanaChat(chat, chatSelected, creacionCasillaMsn) {
     }
 
     divChat.appendChild(ventanaChat)
-    divChat.appendChild(creacionCasillaMsn())
+    divChat.appendChild(creacionCasillaMsn(chat, chatSelected, destinatario, setStorage, guardarMensaje))
 
     return divChat;
 }
