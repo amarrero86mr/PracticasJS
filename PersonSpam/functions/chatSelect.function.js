@@ -25,7 +25,7 @@ function nuevoDestinatario(chat, destinatario, setStorage) {
     const nuevaConv = {
         id: nuevoConvId,
         destinatario: nuevoId,
-        nombre: destinatario, // <--- CORREGIDO: ahora dice "nombre" correctamente
+        nombre: destinatario, 
         avatar: `https://robohash.org/${nuevoId}`,
         ultimoMensaje: {
             texto: "Nueva conversación iniciada",
@@ -37,7 +37,7 @@ function nuevoDestinatario(chat, destinatario, setStorage) {
     chat.conversaciones.push(nuevaConv);
     
     setStorage(chat);
-    return nuevoId;
+    return nuevaConv.nombre;
 }
 
 
@@ -48,8 +48,8 @@ function selectedDestinatario(chat, destinatario, setStorage) {
 
     if (!existDestinatario) {
         // si no guardo una nueva conversacion sin mensaje, devuelvo chat y nombre
-        const nombe = nuevoDestinatario(chat, destinatario, setStorage)
-        return nombe;
+        destinatario = nuevoDestinatario(chat, destinatario, setStorage)
+        return destinatario;
     }
     return destinatario;
 }
