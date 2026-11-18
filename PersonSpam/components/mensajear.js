@@ -4,6 +4,7 @@
 // no debe verse en la pantalla principal
 
 import cambioVenta from "../app.person.js";
+import frasesRandom from "../functions/contestacha.function.js";
 
 // deve recivir cllback para modificar chat
 function creacionCasillaMsn (chat, chatSelected, destinatario, setStorage, guardarMensaje, ) {
@@ -33,6 +34,12 @@ function creacionCasillaMsn (chat, chatSelected, destinatario, setStorage, guard
 
         guardarMensaje(chat, chatSelected, destinatario, msn, setStorage);
         casillaMensaje.value = '';
+
+        const remitente = chat.conversaciones[chatSelected].destinatario
+
+        const mensaje = frasesRandom()
+
+        guardarMensaje(chat, chatSelected, destinatario, mensaje, setStorage, remitente);
 
          cambioVenta(destinatario)
     })

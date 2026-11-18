@@ -1,4 +1,4 @@
-import cambioVenta from "../app.person.js";
+
 
 function creacionVentanaPrincipal(cambioVentana) {
     // creacion de vista principal -->

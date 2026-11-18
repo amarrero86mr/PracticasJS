@@ -61,7 +61,7 @@ const frases = [
     "¡Que no es batman!"
 ]
 
-export default function fraceRandom () {
+export default function frasesRandom () {
     return frases[Math.floor(Math.random() * frases.length)];
 }
 
